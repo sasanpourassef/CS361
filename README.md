@@ -119,6 +119,10 @@ else:
     raise RuntimeError(f"Service error: {reply['message']}")
 ```
 
+## UML Sequence Diagram
+![image](https://github.com/user-attachments/assets/905c83fd-89a9-45d8-92f0-ff92d44d700d)
+
+
 
 
 
