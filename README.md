@@ -66,7 +66,7 @@ socket.send_json(request)
 request = {
     "endpoint": "movie-recommendations",
     "params": {
-        "movie_id": 550,  # e.g. Fight Club
+        "movie_id": 550,  # Fight Club
         "page":     1
     }
 }
