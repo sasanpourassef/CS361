@@ -1,11 +1,11 @@
 Movie Discovery Service
 
-This microservice provides two endpoints: trending-movies and movie-recommendations, over a ZeroMQ REP socket. Once defined, this communication contract must not change, as clients rely on its stability.
+This microservice provides two endpoints: `trending-movies` and `movie-recommendations`, over a ZeroMQ REP socket. Once defined, this communication contract must not change, as clients rely on its stability.
 
 
 Connection:
 Protocol: ZeroMQ REP socket
-Bind Address: tcp://0.0.0.0:${ZMQ_PORT} (default port: 5555)
+Bind Address: `tcp://0.0.0.0:${ZMQ_PORT}` (default port: `5555`)
 
 Clients MUST connect via a REQ socket to the same address.
 
@@ -19,19 +19,19 @@ Here is a general look at the format:
   "params": { /* endpoint-specific parameters */ }
 }`
 
-For the trending-movies endpoint, here are the parameters:
+For the `trending-movies` endpoint, here are the parameters:
 
-**sort_by**,            Type: string          Required?: yes
+**sort_by**,            Type: string,          Required?: yes
 
-**genres**,            Type: integer[]        Required?: yes
+**genres**,            Type: integer[],        Required?: yes
 
-**time_range**,        Type: string          Required?: yes
+**time_range**,        Type: string,          Required?: yes
 
-**start_year**,         Type: int            Required?: no
+**start_year**,         Type: int,            Required?: no
 
-**end_year**,           Type: int            Required?: no
+**end_year**,           Type: int,            Required?: no
 
-**page**,              Type: int           Required?: no
+**page**,              Type: int,           Required?: no
 
 
 The use of start_year and end_year are only needed when the user sets the time_range to "custom".
@@ -45,6 +45,25 @@ Example Request:
         "genres":     [28, 12],       # Action (28) and Adventure (12)
         "time_range": "month",
         "page":       2
+    }
+}
+socket.send_json(request)`
+
+
+For the `movie-recommendations` endpoint, here are the parameters:
+
+**movie_id**,            Type: int,          Required?: yes
+
+**page**,            Type: int,        Required?: no
+
+
+Example Request:
+
+`request = {
+    "endpoint": "movie-recommendations",
+    "params": {
+        "movie_id": 550,  # e.g. Fight Club
+        "page":     1
     }
 }
 socket.send_json(request)`
@@ -71,7 +90,7 @@ When `"status": "error"`, the `"message"` describes what went wrong.
 
 Examples:
 
-trending-movies:
+`trending-movies`:
 
 `reply = socket.recv_json()
 if reply["status"] == "ok":
@@ -81,7 +100,7 @@ else:
     raise RuntimeError(f"Service error: {reply['message']}")`
 
 
-movie-recommendations:
+`movie-recommendations`:
 
 `reply = socket.recv_json()
 if reply["status"] == "ok":
