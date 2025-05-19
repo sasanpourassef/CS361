@@ -20,17 +20,32 @@ Here is a general look at the format:
 
 For the trending-movies endpoint, here are the parameters:
 
-**sort_by**            Type: string          Required?: yes
+**sort_by**,            Type: string          Required?: yes
 
-**genres**            Type: integer[]        Required?:yes
+**genres**,            Type: integer[]        Required?:yes
 
-**time_range**        Type: string          Required?:yes
+**time_range**,        Type: string          Required?:yes
 
-**start_year**         Type: int            Required?:no
+**start_year**,         Type: int            Required?:no
 
-**end_year**           Type: int            Required?:no
+**end_year**,           Type: int            Required?:no
 
-**page**              Type: int           Required?: no
+**page**,              Type: int           Required?: no
+
+
+The use of start_year and end_year are only needed when the user sets the time_range to "custom".
+
+Example Request:
+request = {
+    "endpoint": "trending-movies",
+    "params": {
+        "sort_by":    "popularity",
+        "genres":     [28, 12],       # e.g. Action (28) and Adventure (12)
+        "time_range": "month",
+        "page":       2
+    }
+}
+socket.send_json(request)
 
 
 
