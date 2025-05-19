@@ -19,12 +19,11 @@ Here is a general look at the format:
 }
 
 For the trending-movies endpoint, here are the parameters:
-**Parameter**          **Type**          **Is it Required?**
-sort_by            string          yes              
-genres            integer[]        yes
-time_range         string          yes
-start_year          int            no
-end_year            int            no
-page                int            no
+**sort_by**            Type: string          Required?: yes              
+**genres**            Type: integer[]        Required?:yes
+**time_range **        Type: string          Required?:yes
+**start_year **         Type: int            Required?:no
+**end_year **           Type: int            Required?:no
+**page  **              Type: int           Required?: no
 
 
